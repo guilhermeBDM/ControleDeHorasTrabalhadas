@@ -448,79 +448,9 @@ namespace NSF.TCC.Sundown.DataAccess
 
         }
 
-        public void UpdateBnef(DTOBenefit beneficios)
-        {
-            string query = "UPDATE tb_beneficios SET bt_vt = @bt_vt, bt_plano_saude = @bt_plano_saude, vl_va = @vl_va, vl_vr = @vl_vr, nr_sf= @nr_sf WHERE id_usuario = @id_usuario";
+       
 
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("bt_vt", beneficios.CommuterBenefits));
-            parameters.Add(new MySqlParameter("bt_plano_saude", beneficios.HealthInsurance));
-            parameters.Add(new MySqlParameter("vl_va", beneficios.MealVoucher));
-            parameters.Add(new MySqlParameter("vl_vr", beneficios.MealTicket));
-            parameters.Add(new MySqlParameter("nr_sf", beneficios.FamilySalary));
-            parameters.Add(new MySqlParameter("id_usuario", beneficios.IdUsuario));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            database.ExecuteInsertParamters(query, parameters);
-
-        }
-        public void UpdateForn(DTOFornecedor fornecedores)
-        {
-            string query = "UPDATE tb_fornecedor SET ds_numero=@ds_numero,nm_razao_social = @nm_razao_social, nm_fantasia = @nm_fantasia, ds_cnpj = @ds_cnpj, ds_cep = @ds_cep WHERE id_fornecedor = @id_fornecedor";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("ds_numero", fornecedores.Numero));
-            parameters.Add(new MySqlParameter("nm_razao_social", fornecedores.RazãoSocial));
-            parameters.Add(new MySqlParameter("nm_fantasia", fornecedores.NomeFantasia));
-            parameters.Add(new MySqlParameter("ds_cnpj", fornecedores.Cnpj));
-            parameters.Add(new MySqlParameter("ds_cep", fornecedores.CodigoPostal));
-            parameters.Add(new MySqlParameter("id_fornecedor", fornecedores.IdForncedor));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            database.ExecuteInsertParamters(query, parameters);
-
-        }
-
-        public void UpdateParc(DTOParceiros parceiros)
-        {
-            string query = "UPDATE tb_parceiro SET nm_empresa = @nm_empresa, ds_cnpj = @ds_cnpj, dt_inicio = @dt_inicio, dt_final = @dt_final, ds_desconto= @ds_desconto WHERE id_parceiro = @id_parceiro";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("nm_empresa", parceiros.NameEnterprise));
-            parameters.Add(new MySqlParameter("ds_cnpj", parceiros.Cnpj));
-            parameters.Add(new MySqlParameter("dt_inicio", parceiros.Start));
-            parameters.Add(new MySqlParameter("dt_final", parceiros.End));
-            parameters.Add(new MySqlParameter("ds_desconto", parceiros.Discount));
-            parameters.Add(new MySqlParameter("id_parceiro", parceiros.IdParceiro));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            database.ExecuteInsertParamters(query, parameters);
-
-        }
-        public void UpadateTerc(DTOTerceirizado terceirizadas)
-        {
-            string query = "UPDATE tb_terceirizado SET nm_empresa = @nm_empresa, ds_cnpj = @ds_cnpj, dt_inicio = @dt_inicio, dt_final = @dt_final WHERE id_terc = @id_terc";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("nm_empresa", terceirizadas.NomeEmpresa));
-            parameters.Add(new MySqlParameter("ds_cnpj", terceirizadas.Cnpj));
-            parameters.Add(new MySqlParameter("dt_inicio", terceirizadas.Inicio));
-            parameters.Add(new MySqlParameter("dt_final", terceirizadas.Final));
-            parameters.Add(new MySqlParameter("id_terc", terceirizadas.IdTerc));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            database.ExecuteInsertParamters(query, parameters);
-
-        }
-
-
-
-
-
+    
 
         public List<DTOUser> ListarAtivos()
         {
