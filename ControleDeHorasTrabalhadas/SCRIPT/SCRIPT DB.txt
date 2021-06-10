@@ -1,0 +1,304 @@
+﻿/*DDL Linguagem de definição de dados*/
+	drop database SundownDB;
+	create database SundownDB;
+	use SundownDB;
+    
+	create table tb_usuario(
+	id_usuario int primary key auto_increment not null,
+    nm_nomedoatendente varchar(300) not null,
+	nm_usuario varchar(50) not null,
+	ds_email varchar(100) not null,
+	ds_senha varchar(25) not null,
+    ds_cpf varchar(14) not null,
+    dt_nascimento date not null,
+    ds_cep varchar(9) not null,
+    nr_casa decimal not null,
+    ds_telefone varchar(40) not null
+	);
+	create table tb_permissao(
+	id_permissao int primary key auto_increment not null,
+	id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+	bt_adm bool,
+	bt_rh bool,
+	bt_fin bool,
+	bt_cont bool,
+	bt_comp bool,
+	bt_vend bool
+	);
+    
+    create table tb_setor(
+	id_setor int primary key auto_increment not null,
+    id_usuario int not null,
+    nm_setor varchar(200) not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario)
+	);
+    
+	create table tb_beneficios(
+	id_beneficios int primary key auto_increment not null,
+	id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+	bt_vt bool,
+	bt_plano_saude bool,
+    vl_va decimal(10,2),
+	vl_vr decimal(10,2),
+	nr_sf decimal(10,2)
+	);
+    
+    create table tb_ponto(
+	id_ponto int primary key auto_increment not null,
+	id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+	dt_movimento datetime,
+    ds_status varchar(25) not null
+	);
+
+    create table tb_alteracao_ponto(
+	id_alteracao_ponto int primary key auto_increment not null,
+	id_ponto int not null,
+	foreign key(id_ponto) references tb_ponto(id_ponto),
+	dt_novo_movimento datetime,
+    ds_status varchar(25) not null,
+    ds_motivo varchar(250) not null
+	);
+
+    create table tb_parceiro(
+	id_parceiro int primary key auto_increment not null,
+	nm_empresa varchar(100) not null,
+    ds_cnpj varchar(50) not null,
+    dt_inicio date not null,
+    dt_final date not null,
+    ds_desconto varchar(10) not null
+	);
+	
+    create table tb_demitidos(
+    id_demitidos int primary key auto_increment not null,
+	id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+    nm_nomedoatendente varchar(300) not null,
+	nm_setor varchar(200) not null,
+	ds_causa varchar(10000) not null,
+    dt_dia_demissao date not null
+    );
+    
+    create table tb_brutos(
+    id_brutos int primary key auto_increment not null,
+	id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+	vl_salariobruto decimal(10,2) not null
+    );
+	
+	create table tb_folha_de_pagamento(
+    id_folha int primary key auto_increment not null,
+    id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+    id_brutos int not null,
+    foreign key(id_brutos) references tb_brutos(id_brutos),
+    nr_faltas int not null,
+    nr_atraso_minutos int not null,
+    vl_hora_extra decimal(10,2) not null,
+    vl_salario_liquido decimal(10,2) not null,
+    dt_data_ultimo_ponto datetime not null,
+    dt_data_registro_folha datetime not null
+    );
+       
+    create table tb_terceirizado(
+	id_terc int primary key auto_increment not null,
+	nm_empresa varchar(100) not null,
+    ds_cnpj varchar(50) not null,
+    dt_inicio date not null,
+    dt_final date not null
+    );
+    
+    create table tb_funcionariomes(
+    id_funcmes int primary key auto_increment not null,
+	ds_nomedofunc varchar(200),
+	ft_imagemdofunc longblob,
+	ds_parabenizacao varchar(1000)
+    );
+	
+	create table tb_chat(
+    id_chat int primary key auto_increment not null,
+    id_destinatario int not null,
+    foreign key(id_destinatario) references tb_usuario(id_usuario),
+    id_remetente int not null,
+    foreign key(id_remetente) references tb_usuario(id_usuario),
+    bt_visualizou bool default false not null,
+    ds_texto varchar(1000) not null,
+    dt_envio datetime not null
+    );
+               
+    create table tb_cargos(
+	id_cargos int primary key auto_increment not null,
+	id_usuario int not null,
+	foreign key(id_usuario) references tb_usuario(id_usuario),
+	bt_marketing bool,
+	bt_contabilidade bool,
+	bt_rh bool,
+	bt_gerentelocal bool,
+	bt_assistente_geral bool
+    );
+	
+    create table tb_fornecedor(
+	id_fornecedor int primary key auto_increment not null,
+    nm_razao_social varchar(500) not null,
+    nm_fantasia varchar(500) default '-' not null,
+    ds_cnpj varchar(17) not null,
+	ds_cep varchar(9) not null,
+    ds_numero int not null
+	);
+    
+    create table tb_pedido(
+	id_pedido int primary key auto_increment not null,
+    id_fornecedor int not null,
+    foreign key(id_fornecedor) references tb_fornecedor(id_fornecedor),
+	dt_pedido date not null,
+    ds_pedido varchar(500) not null,
+    vl_total decimal not null
+	);
+    	
+    create table tb_pedido_item(
+	id_pedido_item int primary key auto_increment not null,
+    id_pedido int not null,
+    nm_pedido varchar(500) not null,
+    foreign key(id_pedido) references tb_pedido(id_pedido),
+    vl_produto decimal(10,2) default 0 not null,
+    nr_quantidade int default 1 not null
+	);
+
+	create view vw_pedidos as
+	Select tb_pedido.id_pedido as id_pedido,nm_pedido as nm_pedido,vl_produto as vl_produto,nr_quantidade as nr_quantidade,nm_fantasia as nm_fantasia
+    from tb_pedido_item inner join tb_pedido 
+    on tb_pedido_item.id_pedido = tb_pedido.id_pedido 
+    inner join tb_fornecedor on tb_pedido.id_fornecedor = tb_fornecedor.id_fornecedor;  
+        
+    create table tb_sessao(
+	id_sessao int primary key auto_increment not null,
+	nm_filme varchar(500) not null,
+    ft_img longblob not null,
+    ds_filme varchar(1500) not null,
+    ds_faixa_etaria varchar(7) default 'L' not null,
+    dt_inicio_filme datetime not null,
+    dt_final_filme datetime not null,
+    dt_inico_vendas datetime not null,
+    nr_quantidade_cadeira int not null
+	);
+    
+	create table tb_preco_sessao(
+	id_preco_sessao int primary key auto_increment not null,
+	nm_periodo varchar(10) not null,
+    vl_preco decimal(10,2) not null
+	);
+    select * from tb_preco_sessao;
+    create table tb_preco_fliperama(
+	id_preco_fliperama int primary key auto_increment not null,
+    vl_preco decimal(10,2) not null
+	);
+    
+	create table tb_ingresso_fliperama(
+	id_ingresso_fliperama int primary key auto_increment not null,
+    ds_cpf varchar(14) default 'Não ident' not null,
+    dt_compra datetime not null,
+    id_preco_fliperama int not null,
+    foreign key (id_preco_fliperama) references tb_preco_fliperama(id_preco_fliperama),
+    nr_fixas int default 0 not null
+	);
+           
+	create table tb_ingresso_sessao(
+	id_ingresso_sessao int primary key auto_increment not null,
+	id_sessao int not null,
+    nr_cadeira int not null,
+    foreign key (id_sessao) references tb_sessao(id_sessao),
+    ds_cpf varchar(14) default 'Não ident' not null,
+    dt_compra datetime not null,
+    id_preco_sessao int not null,
+	foreign key (id_preco_sessao) references tb_preco_sessao(id_preco_sessao),
+    bt_meia bool
+	);
+    
+	create table tb_contabilidade(
+    id_contabilidade int primary key auto_increment not null,
+    ds_motivo varchar(40),
+    op_operacao varchar(8),
+    vl_valor decimal,
+    dt_data_da_transacao datetime
+	);
+
+    create view vw_consulta_cinema as
+	SELECT tb_ingresso_sessao.id_ingresso_sessao, ds_cpf,nr_cadeira,dt_compra,vl_preco,nm_filme,bt_meia from tb_ingresso_sessao INNER JOIN tb_sessao on tb_ingresso_sessao.id_sessao = tb_sessao.id_sessao 
+    INNER JOIN tb_preco_sessao on tb_ingresso_sessao.id_preco_sessao = tb_preco_sessao.id_preco_sessao;
+             
+	create view vw_consulta_fliperama as
+	SELECT tb_ingresso_fliperama.id_ingresso_fliperama, ds_cpf,dt_compra,vl_preco,nr_fixas from tb_ingresso_fliperama inner join tb_preco_fliperama on tb_ingresso_fliperama.id_preco_fliperama = tb_preco_fliperama.id_preco_fliperama;
+	        
+
+	Create view vw_fluxo_caixa as
+	SELECT date(dt_pedido) as dt_dia, sum(vl_produto * nr_quantidade) as vl_valor, 'Saída' as op_operacao, 'Pedidos' as ds_motivo
+	from tb_pedido inner join tb_pedido_item 
+	on tb_pedido.id_pedido = tb_pedido_item.id_pedido 
+	group by dt_dia,op_operacao,ds_motivo
+    UNION
+    select date(dt_data_registro_folha) as dt_dia, sum(tb_brutos.vl_salariobruto) as vl_valor,'Saída' as op_operacao,'Pagamentos' as ds_motivo
+    from tb_folha_de_pagamento inner join tb_brutos on tb_folha_de_pagamento.id_folha = tb_brutos.id_brutos
+	group by dt_dia,op_operacao,ds_motivo
+	UNION
+	SELECT date(dt_compra) as dt_dia, 
+	sum(CASE WHEN tb_ingresso_sessao.bt_meia = true THEN ROUND((vl_preco /2),1) ELSE vl_preco END ) as vl_valor, 
+	'Entrada'as op_operacao,'Vendas' as ds_motivo
+	from tb_ingresso_sessao inner join tb_preco_sessao on tb_ingresso_sessao.id_preco_sessao = tb_preco_sessao.id_preco_sessao 
+    group by dt_dia,op_operacao,ds_motivo
+    UNION
+	SELECT date(dt_compra) as dt_dia, Round(sum(vl_preco * nr_fixas),1) as vl_valor, 
+    'Entrada' as op_operacao,'Vendas' as ds_motivo
+    from tb_ingresso_fliperama inner join tb_preco_fliperama on tb_ingresso_fliperama.id_preco_fliperama = tb_preco_fliperama.id_preco_fliperama
+    group by dt_dia,op_operacao,ds_motivo
+    UNION
+	Select date(dt_data_da_transacao) as dt_dia,sum(vl_valor) as vl_valor,op_operacao,ds_motivo
+    from tb_contabilidade
+    group by dt_dia,op_operacao,ds_motivo;
+    
+
+    create view vw_consulta_solicitacoes as
+    SELECT tb_alteracao_ponto.id_alteracao_ponto, tb_ponto.id_ponto, tb_usuario.nm_usuario, tb_ponto.dt_movimento ,
+    tb_alteracao_ponto.dt_novo_movimento as 'dt_novomovimento',tb_ponto.ds_status , tb_alteracao_ponto.ds_status as 'ds_novostatus', 
+    tb_alteracao_ponto.ds_motivo
+    from ((tb_alteracao_ponto INNER JOIN tb_ponto on tb_alteracao_ponto.id_ponto = tb_ponto.id_ponto)left join tb_usuario on tb_usuario.id_usuario = tb_ponto.id_usuario);
+
+
+	create view tb_chat_select as
+	select max(tb_chat.id_chat) as id_chat, 
+    tb_chat.bt_visualizou, 
+    tb_chat.id_destinatario, 
+    tb_chat.id_remetente,
+    (select nm_usuario from tb_usuario where id_usuario = tb_chat.id_remetente limit 1) as nm_usuario
+	from tb_usuario 
+	left join tb_chat 
+	on tb_usuario.id_usuario = tb_chat.id_destinatario
+    where tb_chat.bt_visualizou = false
+    group 
+    by tb_chat.id_remetente
+    union
+	select 
+    0 as id_chat, 
+    true as bt_visualizou, 
+    0 as id_destinatario, 
+    id_usuario as id_remetente, 
+    nm_usuario 
+    from tb_usuario;
+    	  
+	/*Criar um usuario*/
+    insert into tb_usuario(nm_nomedoatendente,nm_usuario,ds_email,ds_senha,ds_cpf,dt_nascimento,ds_cep,nr_casa,ds_telefone) value('admD@','admD@','admD@','admD123',"000.000.000-00","2017-12-12","00000-000",00,"+55(00)0000-0000");
+    /*Inserir permissão*/
+    insert into tb_permissao(bt_adm,bt_rh,bt_fin,bt_cont,bt_comp,bt_vend,id_usuario) value(1,1,1,1,1,1,1);
+    
+    /* Inserir salário bruto para um usuário */
+	INSERT INTO	tb_brutos (vl_salariobruto,id_usuario) VALUES (1500.00,1);
+    
+    /*Inserir beneficios*/
+	insert into tb_beneficios(bt_vt,bt_plano_saude,vl_va,vl_vr,nr_sf,id_usuario) values (1,1,1,1,1,1);
+    
+    /*Inserir setor*/
+	insert into tb_setor(nm_setor,id_usuario) values ("CINEMA",1);
+    
+    /*Inserir Cargo*/
+    insert into tb_cargos(bt_marketing,bt_contabilidade,bt_rh,bt_gerentelocal,bt_assistente_geral,id_usuario) VALUES (0,0,0,1,0,1);	
