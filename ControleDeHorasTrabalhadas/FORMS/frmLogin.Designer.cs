@@ -100,7 +100,6 @@ namespace ControleDeHorasTrabalhadas
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(245, 26);
             this.txtSenha.TabIndex = 3;
-            this.txtSenha.Text = "admD123";
             // 
             // txtEmail
             // 
@@ -112,7 +111,6 @@ namespace ControleDeHorasTrabalhadas
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(245, 26);
             this.txtEmail.TabIndex = 0;
-            this.txtEmail.Text = "admD@";
             // 
             // label2
             // 
@@ -158,8 +156,8 @@ namespace ControleDeHorasTrabalhadas
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LOGIN";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.frmLogin_GiveFeedback);

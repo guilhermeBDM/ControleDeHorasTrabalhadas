@@ -176,6 +176,7 @@ namespace ControleDeHorasTrabalhadas.FORMS
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConsultarPontos";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsultarPontos_FormClosing);
             this.Load += new System.EventHandler(this.frmConsultarPontos_Load);

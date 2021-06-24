@@ -139,7 +139,11 @@ namespace ControleDeHorasTrabalhadas.FORMS
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(53)))), ((int)(((byte)(90)))));
             this.ClientSize = new System.Drawing.Size(532, 303);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmConsultaDataEspecifica";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsultaDataEspecifica_FormClosing);
             this.Load += new System.EventHandler(this.frmConsultaDataEspecifica_Load);

@@ -49,32 +49,7 @@ namespace NSF.TCC.Sundown.DataAccess
 
 
 
-        //Pegar beneficios
-        public void ListBenef(int id)
-        {
-
-            string query = "Select * from tb_beneficios where id_usuario = @id_usuario;";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("id_usuario", id));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            MySqlDataReader reader = database.ExecuteSelectParamters(query, parameters);
-
-            while (reader.Read())
-            {
-
-                Transporte = reader.GetBoolean("bt_vt");
-                Saude = reader.GetBoolean("bt_plano_saude");
-                SalarioFamilia = reader.GetDecimal("nr_sf");
-                ValeRefeicao = reader.GetDecimal("vl_vr");
-                ValeAlimentacao = reader.GetDecimal("vl_va");
-                
-            }
-            reader.Close();
-
-        }
+        
         //Dados da tabela de usuario
         public void ListAllDadosUser(int id)
         {
@@ -108,30 +83,7 @@ namespace NSF.TCC.Sundown.DataAccess
 
 
 
-        //Pegar o setor do usuário
-        public void ListSetor(int id)
-        {
-
-            string query = "Select * from tb_setor where id_usuario = @id_usuario;";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("id_usuario", id));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            MySqlDataReader reader = database.ExecuteSelectParamters(query, parameters);
-
-            while (reader.Read())
-            {
-
-                Setor = reader.GetString("nm_setor");
-               
-
-
-            }
-            reader.Close();
-
-        }
+        
 
         //Pegar permissões
         public void ListPerms(int id)
@@ -158,54 +110,9 @@ namespace NSF.TCC.Sundown.DataAccess
             reader.Close();
 
         }
-        //pegar cargos
-        public void ListCargos(int id)
-        {
-
-            string query = "Select * from tb_cargos where id_usuario = @id_usuario;";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("id_usuario", id));
+       
 
 
-            ProjetoDataBase database = new ProjetoDataBase();
-            MySqlDataReader reader = database.ExecuteSelectParamters(query, parameters);
-
-            while (reader.Read())
-            {
-                Marketing = reader.GetBoolean("bt_marketing");
-                RhC = reader.GetBoolean("bt_rh");
-                Contabilidade = reader.GetBoolean("bt_contabilidade");
-                GerenteLocal = reader.GetBoolean("bt_gerentelocal");
-                AGeral = reader.GetBoolean("bt_assistente_geral");
-                
-            }
-            reader.Close();
-
-        }
-
-
-        //Pegar salário Bruto
-        public void ListBrutos(int id)
-        {
-
-            string query = "select * from tb_brutos where id_usuario = @id_usuario order by id_brutos desc limit 1";
-
-            List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("id_usuario", id));
-
-
-            ProjetoDataBase database = new ProjetoDataBase();
-            MySqlDataReader reader = database.ExecuteSelectParamters(query, parameters);
-
-            while (reader.Read())
-            {
-                IdSalarioBruto = reader.GetInt32("id_brutos");
-                SalarioBruto = reader.GetDecimal("vl_salariobruto");
-            }
-            reader.Close();
-
-        }
 
 
 

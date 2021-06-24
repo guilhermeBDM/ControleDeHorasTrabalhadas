@@ -61,9 +61,9 @@ namespace ControleDeHorasTrabalhadas
 
         private void button4_Click(object sender, EventArgs e)
         {
-            criar.CriarPonto(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), lblMovimento.Text);
+            criar.CriarPonto(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), lblMovimento.Text, lblRuaNumero.Text+"-"+lblCidadeEstado.Text);
 
-            MessageBox.Show("PONTO REGISTRADO COM SUCESSO!", "TOPMOVIE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("PONTO REGISTRADO COM SUCESSO!", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             VoltarMenu();
             

@@ -48,7 +48,7 @@ namespace ControleDeHorasTrabalhadas
 
             lblNome.Text = user.Nome;
 
-            if (a.Administrator || a.Rh)
+            if (a.Administrator || a.Administrator)
             {
                 aToolStripMenuItem.Visible = true;
                 menuStrip1.Padding = new Padding(115, 2, 0, 2);
@@ -121,7 +121,7 @@ namespace ControleDeHorasTrabalhadas
             }
             else
             {
-                MessageBox.Show("ESCOLHA UM STATUS PARA REGISTRAR.", "TOPMOVIE - ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ESCOLHA UM STATUS PARA REGISTRAR.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         string[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio",
@@ -207,7 +207,10 @@ namespace ControleDeHorasTrabalhadas
 
         private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            frmLogin login = new frmLogin();
+            login.Show();
+            this.Hide();
+            
         }
 
         private void timerCxb_Tick(object sender, EventArgs e)

@@ -45,11 +45,24 @@ namespace ControleDeHorasTrabalhadas.FORMS
             dtpData.Visible = true;
 
 
-            gvResults.Rows.Add("06/06/2021", "8", "0");
-            gvResults.Rows.Add("07/06/2021", "9", "1");
-            gvResults.Rows.Add("08/06/2021", "8", "0");
-            gvResults.Rows.Add("09/06/2021", "6", "0");
-            gvResults.Rows.Add("10/06/2021", "8", "0");
+            gvResults.Rows.Add("15/06/2021", "8");
+            gvResults.Rows.Add("16/06/2021", "9");
+            gvResults.Rows.Add("17/06/2021", "8");
+            gvResults.Rows.Add("18/06/2021", "6");
+            gvResults.Rows.Add("19/06/2021", "8"); 
+            gvResults.Rows.Add("20/06/2021", "8");
+            gvResults.Rows.Add("21/06/2021", "8");
+            gvResults.Rows.Add("22/06/2021", "8");
+            gvResults.Rows.Add("23/06/2021", "8");
+            gvResults.Rows.Add("24/06/2021", "8");
+            gvResults.Rows.Add("25/06/2021", "8");
+            gvResults.Rows.Add("26/06/2021", "8");
+            gvResults.Rows.Add("27/06/2021", "8");
+            gvResults.Rows.Add("28/06/2021", "8");
+            gvResults.Rows.Add("29/06/2021", "8");
+            gvResults.Rows.Add("30/06/2021", "8");
+
+
 
 
 
@@ -121,6 +134,11 @@ namespace ControleDeHorasTrabalhadas.FORMS
         private void frmConsultarPontoFuncionarios_FormClosing(object sender, FormClosingEventArgs e)
         {
             VoltarMenu();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("FUNCIONALIDADE NÃO DESENVOLVIDA");
         }
     }
 }

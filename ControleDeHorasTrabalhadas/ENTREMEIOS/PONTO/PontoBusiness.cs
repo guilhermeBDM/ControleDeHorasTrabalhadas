@@ -15,9 +15,9 @@ namespace ControleDeHorasTrabalhadas
         public int Id { get; set; }
         PontoDataBase db = new PontoDataBase();
 
-        public void CriarPonto(string data, string status)
+        public void CriarPonto(string data, string status, string localizacao)
         { 
-                db.CriarPonto(this.Id, data, status);
+                db.CriarPonto(this.Id, data, status, localizacao);
         }
         public void CriarPedidoAlteracao(int idPonto, string data, string status, string motivo)
         {

@@ -13,7 +13,7 @@ namespace NSF.TCC.Sundown.DataAccess
     {
         public DTOPermission Permin(int id)
         {
-            string query = "select tb_usuario.id_usuario, tb_permissao.bt_adm, tb_permissao.bt_rh, tb_permissao.bt_fin, tb_permissao.bt_cont, tb_permissao.bt_comp, tb_permissao.bt_vend from tb_usuario inner join tb_permissao on tb_usuario.id_usuario = tb_permissao.id_usuario WHERE tb_usuario.id_usuario = @id";
+            string query = "select tb_usuario.id_usuario, tb_permissao.bt_adm, tb_permissao.bt_comum from tb_usuario inner join tb_permissao on tb_usuario.id_usuario = tb_permissao.id_usuario WHERE tb_usuario.id_usuario = @id";
             List<MySqlParameter> parameters = new List<MySqlParameter>();
             parameters.Add(new MySqlParameter("id", id));
 
@@ -26,11 +26,8 @@ namespace NSF.TCC.Sundown.DataAccess
                 {
                 var.IdUser = reader.GetInt32("id_usuario");
                 var.Administrator = reader.GetBoolean("bt_adm");
-                var.Rh = reader.GetBoolean("bt_rh");
-                var.Fin = reader.GetBoolean("bt_fin");
-                var.Cont = reader.GetBoolean("bt_cont");
-                var.Comp = reader.GetBoolean("bt_comp");
-                var.Vend = reader.GetBoolean("bt_vend");
+                var.Comum = reader.GetBoolean("bt_comum");
+
             }
             reader.Close();
 

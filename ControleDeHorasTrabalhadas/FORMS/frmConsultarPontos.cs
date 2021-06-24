@@ -58,8 +58,18 @@ namespace ControleDeHorasTrabalhadas.FORMS
                 gvResults.Rows.Add(item.Movement,item.Status,"Rua XPTO, 28. São Paulo, SP");
                 idPontosModif[counter] = item.Id;
                 counter++;
+           }
+           idPontos = idPontosModif;
+
+            if (gvResults.RowCount == 0)
+            {
+                button4.Enabled = false;
             }
-            idPontos = idPontosModif;
+            else 
+            {
+                button4.Enabled = true;
+
+            }
         }
         private void lbxUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {

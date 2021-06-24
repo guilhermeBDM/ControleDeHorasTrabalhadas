@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gnomebreaktimer_94390 %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -94,9 +97,7 @@
     <Compile Include="ENTREMEIOS\ACESSO\LoginBusiness.cs" />
     <Compile Include="ENTREMEIOS\ACESSO\PermissaoBusiness.cs" />
     <Compile Include="ENTREMEIOS\PONTO\PontoBusiness.cs" />
-    <Compile Include="ENTREMEIOS\RH\BuscarAtendenteBusiness.cs" />
     <Compile Include="ENTREMEIOS\RH\ListarFuncionariosAtivos.cs" />
-    <Compile Include="ENTREMEIOS\RH\NovoAtendente.cs" />
     <Compile Include="FORMS\frmConfirmacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +134,12 @@
     <Compile Include="FORMS\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FORMS\frmMensagemDevolutiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORMS\frmMensagemDevolutiva.Designer.cs">
+      <DependentUpon>frmMensagemDevolutiva.cs</DependentUpon>
+    </Compile>
     <Compile Include="FORMS\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,14 +155,6 @@
     <Compile Include="MAPEAMENTOS\DTOs\ACESSO\DTOPermission.cs" />
     <Compile Include="MAPEAMENTOS\DTOs\PONTO\DTOAlteracaoPonto.cs" />
     <Compile Include="MAPEAMENTOS\DTOs\PONTO\DTOPonto.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOBenefit.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOCargos.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTODemitidos.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOFolhaDePagamento.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOParceiros.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOSalarioBruto.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOSector.cs" />
-    <Compile Include="MAPEAMENTOS\DTOs\RH\DTOTerceirizado.cs" />
     <Compile Include="MAPEAMENTOS\DTOs\RH\DTOUser.cs" />
     <Compile Include="MAPEAMENTOS\VIEWS\PONTO\ViewSolicitacoesAlteracaoPonto.cs" />
     <Compile Include="Program.cs" />
@@ -182,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FORMS\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORMS\frmMensagemDevolutiva.resx">
+      <DependentUpon>frmMensagemDevolutiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FORMS\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
@@ -262,8 +264,10 @@
     <None Include="Resources\engrenagembranca.png" />
     <None Include="Resources\engrenagem.png" />
     <None Include="Resources\more.png" />
+    <Content Include="clock_hour_watch_time_icon_187012.ico" />
+    <Content Include="gnomebreaktimer_94390 %281%29.ico" />
+    <Content Include="gnomebreaktimer_94390.ico" />
     <Content Include="SCRIPT\PONTODB.txt" />
-    <Content Include="SCRIPT\SCRIPT DB.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

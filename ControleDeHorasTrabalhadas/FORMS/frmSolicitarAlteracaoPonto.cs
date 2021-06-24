@@ -77,7 +77,7 @@ namespace ControleDeHorasTrabalhadas.FORMS
 
         private void frmSolicitarAlteracaoPonto_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            VoltarConsulta();
         }
     }
 }

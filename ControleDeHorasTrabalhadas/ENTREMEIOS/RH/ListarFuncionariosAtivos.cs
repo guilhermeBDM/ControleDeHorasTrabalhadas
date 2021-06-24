@@ -14,7 +14,7 @@ namespace NSF.TCC.Sundown.Business
      public List<DTOUser> ListAll()
      {
        CrudDataBase db = new CrudDataBase();
-       List<DTOUser> funcionarios = db.ListarAtivos();
+       List<DTOUser> funcionarios = db.ListAllUsers();
 
        return funcionarios;
      }

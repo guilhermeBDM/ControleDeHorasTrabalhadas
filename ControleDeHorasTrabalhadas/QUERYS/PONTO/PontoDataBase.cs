@@ -12,11 +12,11 @@ namespace NSF.TCC.Sundown.DataAccess
 {
     public class PontoDataBase
     {
-        public void CriarPonto(int id, string data, string status)
+        public void CriarPonto(int id, string data, string status, string localizacao)
         {
 
-            string query = "insert into tb_ponto(id_usuario, ds_status, dt_movimento) value({0},'{1}','{2}')";
-            query = string.Format(query, id, status, data);
+            string query = "insert into tb_ponto(id_usuario, ds_status, dt_movimento, ds_localizacao) value({0},'{1}','{2}', '{3}')";
+            query = string.Format(query, id, status, data, localizacao);
             ProjetoDataBase db = new ProjetoDataBase();
             db.ExecuteInsert(query);
 
@@ -83,7 +83,7 @@ namespace NSF.TCC.Sundown.DataAccess
        
         public List<DTOUser> ListarUsuarios()
         {
-            string query = "select * from tb_usuario left join tb_demitidos on tb_usuario.id_usuario = tb_demitidos.id_usuario where tb_demitidos.id_usuario is null";
+            string query = "select * from tb_usuario";
             ProjetoDataBase db = new ProjetoDataBase();
             MySqlDataReader read = db.ExecuteSelect(query);
 
@@ -93,7 +93,7 @@ namespace NSF.TCC.Sundown.DataAccess
             {
                 DTOUser reg = new DTOUser();
                 reg.Id = read.GetInt32("id_usuario");
-                reg.Nome = read.GetString("nm_nomedoatendente");
+                reg.Nome = read.GetString("nm_nome");
                 reg.User = read.GetString("nm_usuario");
                 loop.Add(reg);
             }
@@ -116,7 +116,7 @@ namespace NSF.TCC.Sundown.DataAccess
             while (read.Read())
             {
                 reg.Id = read.GetInt32("id_usuario");
-                reg.Nome = read.GetString("nm_nomedoatendente");
+                reg.Nome = read.GetString("nm_nome");
                 reg.User = read.GetString("nm_usuario");
             }
             read.Close();

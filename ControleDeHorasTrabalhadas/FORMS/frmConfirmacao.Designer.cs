@@ -36,8 +36,8 @@ namespace ControleDeHorasTrabalhadas
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblDiaSemana = new System.Windows.Forms.Label();
             this.lblHorario = new System.Windows.Forms.Label();
-            this.lblNome = new System.Windows.Forms.Label();
-            this.lblSaudacao = new System.Windows.Forms.Label();
+            this.lblCidadeEstado = new System.Windows.Forms.Label();
+            this.lblRuaNumero = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -147,38 +147,38 @@ namespace ControleDeHorasTrabalhadas
             this.lblHorario.Text = "23:30:30";
             this.lblHorario.Click += new System.EventHandler(this.lblHorario_Click);
             // 
-            // lblNome
+            // lblCidadeEstado
             // 
-            this.lblNome.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblNome.AutoSize = true;
-            this.lblNome.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblNome.Location = new System.Drawing.Point(54, 32);
-            this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(134, 25);
-            this.lblNome.TabIndex = 3;
-            this.lblNome.Text = "São Paulo, SP";
+            this.lblCidadeEstado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblCidadeEstado.AutoSize = true;
+            this.lblCidadeEstado.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCidadeEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblCidadeEstado.Location = new System.Drawing.Point(54, 32);
+            this.lblCidadeEstado.Name = "lblCidadeEstado";
+            this.lblCidadeEstado.Size = new System.Drawing.Size(134, 25);
+            this.lblCidadeEstado.TabIndex = 3;
+            this.lblCidadeEstado.Text = "São Paulo, SP";
             // 
-            // lblSaudacao
+            // lblRuaNumero
             // 
-            this.lblSaudacao.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lblSaudacao.AutoSize = true;
-            this.lblSaudacao.Font = new System.Drawing.Font("Segoe UI Semilight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaudacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblSaudacao.Location = new System.Drawing.Point(48, 0);
-            this.lblSaudacao.Name = "lblSaudacao";
-            this.lblSaudacao.Size = new System.Drawing.Size(146, 32);
-            this.lblSaudacao.TabIndex = 2;
-            this.lblSaudacao.Text = "Rua xpto, 28";
-            this.lblSaudacao.Click += new System.EventHandler(this.lblSaudacao_Click);
+            this.lblRuaNumero.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblRuaNumero.AutoSize = true;
+            this.lblRuaNumero.Font = new System.Drawing.Font("Segoe UI Semilight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRuaNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblRuaNumero.Location = new System.Drawing.Point(48, 0);
+            this.lblRuaNumero.Name = "lblRuaNumero";
+            this.lblRuaNumero.Size = new System.Drawing.Size(146, 32);
+            this.lblRuaNumero.TabIndex = 2;
+            this.lblRuaNumero.Text = "Rua xpto, 28";
+            this.lblRuaNumero.Click += new System.EventHandler(this.lblSaudacao_Click);
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.lblSaudacao, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.lblNome, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblRuaNumero, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lblCidadeEstado, 0, 1);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 22);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
@@ -309,8 +309,8 @@ namespace ControleDeHorasTrabalhadas
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lblDiaSemana;
         private System.Windows.Forms.Label lblHorario;
-        private System.Windows.Forms.Label lblNome;
-        private System.Windows.Forms.Label lblSaudacao;
+        private System.Windows.Forms.Label lblCidadeEstado;
+        private System.Windows.Forms.Label lblRuaNumero;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;

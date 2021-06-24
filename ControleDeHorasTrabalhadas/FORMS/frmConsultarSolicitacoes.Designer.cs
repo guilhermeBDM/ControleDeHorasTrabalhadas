@@ -189,6 +189,7 @@ namespace ControleDeHorasTrabalhadas.FORMS
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConsultarSolicitacoes";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmConsultarSolicitacoes_FormClosing);
             this.Load += new System.EventHandler(this.frmConsultarSolicitacoes_Load);

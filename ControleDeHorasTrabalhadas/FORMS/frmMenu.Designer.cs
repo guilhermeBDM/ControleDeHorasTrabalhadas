@@ -267,6 +267,7 @@ namespace ControleDeHorasTrabalhadas
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMenu";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenu_FormClosing);

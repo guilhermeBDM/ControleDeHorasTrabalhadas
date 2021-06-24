@@ -1,65 +1,74 @@
-﻿/*DDL Linguagem de definição de dados*/
-	drop database SundownDB;
-	create database SundownDB;
-	use SundownDB;
-    
-	create table tb_usuario(
-	id_usuario int primary key auto_increment not null,
-    nm_nomedoatendente varchar(300) not null,
-	nm_usuario varchar(50) not null,
-	ds_email varchar(100) not null,
-	ds_senha varchar(25) not null,
-    ds_cpf varchar(14) not null,
-    dt_nascimento date not null,
-    ds_cep varchar(9) not null,
-    nr_casa decimal not null,
-    ds_telefone varchar(40) not null
-	);
+﻿
 
-	create table tb_permissao(
-	id_permissao int primary key auto_increment not null,
-	id_usuario int not null,
-	foreign key(id_usuario) references tb_usuario(id_usuario),
-	bt_adm bool,
-	bt_comum bool,
-	);
-    
-    create table tb_ponto(
-	id_ponto int primary key auto_increment not null,
-	id_usuario int not null,
-	foreign key(id_usuario) references tb_usuario(id_usuario),
-	dt_movimento datetime,
-    ds_status varchar(25) not null
-	);
+create table tb_usuario(
+  id_usuario int primary key auto_increment not null,
+  nm_nome varchar(300) not null,
+  nm_usuario varchar(50) not null,
+  ds_email varchar(100) not null,
+  ds_senha varchar(25) not null,
+  ds_cpf varchar(14) not null,
+  dt_nascimento date not null,
+  ds_cep varchar(9) not null,
+  nr_casa decimal not null,
+  ds_telefone varchar(40) not null
+);
+create table tb_permissao(
+  id_permissao int primary key auto_increment not null,
+  id_usuario int not null,
+  foreign key(id_usuario) references tb_usuario(id_usuario),
+  bt_adm bool,
+  bt_comum bool
+);
+create table tb_ponto(
+  id_ponto int primary key auto_increment not null,
+  id_usuario int not null,
+  foreign key(id_usuario) references tb_usuario(id_usuario),
+  dt_movimento datetime,
+  ds_status varchar(25) not null,
+  ds_localizacao varchar(60) not null
+);
+create table tb_alteracao_ponto(
+  id_alteracao_ponto int primary key auto_increment not null,
+  id_ponto int not null,
+  foreign key(id_ponto) references tb_ponto(id_ponto),
+  dt_novo_movimento datetime,
+  ds_status varchar(25) not null,
+  ds_motivo varchar(250) not null,
+  ds_devolutiva varchar(250) not null
+);
 
-    create table tb_alteracao_ponto(
-	id_alteracao_ponto int primary key auto_increment not null,
-	id_ponto int not null,
-	foreign key(id_ponto) references tb_ponto(id_ponto),
-	dt_novo_movimento datetime,
-    ds_status varchar(25) not null,
-    ds_motivo varchar(250) not null
-	);
-    
-    create table tb_cargos(
-	id_cargos int primary key auto_increment not null,
-	id_usuario int not null,
-	foreign key(id_usuario) references tb_usuario(id_usuario),
-	bt_marketing bool,
-	bt_contabilidade bool,
-	bt_rh bool,
-	bt_gerentelocal bool,
-	bt_assistente_geral bool
-    );
-	
-	  
-	/*Criar um usuario*/
-    insert into tb_usuario(nm_nomedoatendente,nm_usuario,ds_email,ds_senha,ds_cpf,dt_nascimento,ds_cep,nr_casa,ds_telefone) value('admD@','admD@','admD@','admD123',"000.000.000-00","2017-12-12","00000-000",00,"+55(00)0000-0000");
-    /*Inserir permissão*/
-    insert into tb_permissao(bt_adm,bt_rh,bt_fin,bt_cont,bt_comp,bt_vend,id_usuario) value(1,1,1,1,1,1,1);
-    
-    /* Inserir salário bruto para um usuário */
-	INSERT INTO	tb_brutos (vl_salariobruto,id_usuario) VALUES (1500.00,1);
-    
-    /*Inserir Cargo*/
-    insert into tb_cargos(bt_marketing,bt_contabilidade,bt_rh,bt_gerentelocal,bt_assistente_geral,id_usuario) VALUES (0,0,0,1,0,1);	
+  select * from tb_usuario
+  select * from tb_permissao
+  
+  insert into
+  tb_permissao(id_usuario, bt_adm, bt_comum) value(5, 1, 1);
+  
+  insert into
+  tb_usuario(
+    nm_nome,
+    nm_usuario,
+    ds_email,
+    ds_senha,
+    ds_cpf,
+    dt_nascimento,
+    ds_cep,
+    nr_casa,
+    ds_telefone
+  ) value(
+    'Colaborador Comum',
+    'Colaborador Comum',
+    'colaborador@email',
+    'colaborador',
+    "000.000.000-00",
+    "2017-12-12",
+    "00000-000",
+    00,
+    "+55(00)0000-0000"
+  );
+  
+  create view vw_consulta_solicitacoes as
+    SELECT tb_alteracao_ponto.id_alteracao_ponto, tb_ponto.id_ponto, tb_usuario.nm_usuario, tb_ponto.dt_movimento ,
+    tb_alteracao_ponto.dt_novo_movimento as 'dt_novomovimento',tb_ponto.ds_status , tb_alteracao_ponto.ds_status as 'ds_novostatus', 
+    tb_alteracao_ponto.ds_motivo
+    from ((tb_alteracao_ponto INNER JOIN tb_ponto on tb_alteracao_ponto.id_ponto = tb_ponto.id_ponto)left join tb_usuario on tb_usuario.id_usuario = tb_ponto.id_usuario);
+  

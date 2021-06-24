@@ -185,12 +185,8 @@ namespace ControleDeHorasTrabalhadas.FORMS
             this.cbxStatus.Items.AddRange(new object[] {
             "ENTRADA",
             "PAUSA",
-            "SAÍDA",
             "RETORNO",
-            "INÍCIO HORA EXTRA",
-            "FIM HORA EXTRA",
-            "PAUSA HORA EXTRA",
-            "RETORNO HORA EXTRA",
+            "SAÍDA",
             "CANCELAR"});
             this.cbxStatus.Location = new System.Drawing.Point(3, 3);
             this.cbxStatus.Name = "cbxStatus";
@@ -298,6 +294,7 @@ namespace ControleDeHorasTrabalhadas.FORMS
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSolicitarAlteracaoPonto";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSolicitarAlteracaoPonto_FormClosing);
             this.Load += new System.EventHandler(this.frmSolicitarAlteracaoPonto_Load);

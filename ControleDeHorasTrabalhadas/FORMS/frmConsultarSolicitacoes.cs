@@ -19,7 +19,7 @@ namespace ControleDeHorasTrabalhadas.FORMS
         int[] idPontos;
         int[] idPedido;
         int id;
-
+        int tela;
         public frmMenu MenuScreen { get; set; }
 
         void VoltarMenu()
@@ -66,26 +66,36 @@ namespace ControleDeHorasTrabalhadas.FORMS
         PontoBusiness criar = new PontoBusiness();
         private void button4_Click(object sender, EventArgs e)
         {
+
+
             int idPontoAtual = idPontos[gvResults.SelectedRows[0].Index];
             int idPedidoAlteracaoAtual = idPedido[gvResults.SelectedRows[0].Index];
-
-         
             DateTime horarioDateTime = Convert.ToDateTime(gvResults.SelectedRows[0].Cells[2].Value.ToString());
             string statusGrid = gvResults.SelectedRows[0].Cells[4].Value.ToString();
-            if (statusGrid != "CANCELAR")
-            {
-                criar.AlterarPonto(idPontoAtual, horarioDateTime.ToString("yyyy-MM-dd HH:mm:ss"), statusGrid);
-                criar.DeletarPedidoAlteracao(idPedidoAlteracaoAtual);
 
-            }
-            else 
-            {
-                criar.DeletarPedidoAlteracao(idPedidoAlteracaoAtual);
-                criar.DeletarPonto(idPontoAtual);
-            }
-            MessageBox.Show("SOLICITAÇÃO DE ALTERAÇÃO PERMITIDA COM SUCESSO!", "TOPMOVIE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frmMensagemDevolutiva msg = new frmMensagemDevolutiva();
 
-            listarPedidos();
+            msg.solicitacoesScreen = this;
+
+            msg.setDados(idPontoAtual, idPedidoAlteracaoAtual, horarioDateTime, statusGrid, 1);
+
+            msg.Show();
+            this.Hide();
+
+            //if (statusGrid != "CANCELAR")
+            //{
+                //criar.AlterarPonto(idPontoAtual, horarioDateTime.ToString("yyyy-MM-dd HH:mm:ss"), statusGrid);
+                //criar.DeletarPedidoAlteracao(idPedidoAlteracaoAtual);
+
+            //}
+            //else 
+            //{
+                //criar.DeletarPedidoAlteracao(idPedidoAlteracaoAtual);
+                //criar.DeletarPonto(idPontoAtual);
+            //}
+            //MessageBox.Show("SOLICITAÇÃO DE ALTERAÇÃO PERMITIDA COM SUCESSO!", "TOPMOVIE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //listarPedidos();
 
 
 
@@ -94,9 +104,19 @@ namespace ControleDeHorasTrabalhadas.FORMS
         private void button1_Click(object sender, EventArgs e)
         {
             int idPedidoAlteracaoAtual = idPedido[gvResults.SelectedRows[0].Index];
-            criar.DeletarPedidoAlteracao(idPedidoAlteracaoAtual);
-            MessageBox.Show("SOLICITAÇÃO DE ALTERAÇÃO NEGADA COM SUCESSO!", "TOPMOVIE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            listarPedidos();
+            frmMensagemDevolutiva msg = new frmMensagemDevolutiva();
+
+            msg.solicitacoesScreen = this;
+
+            msg.setDados(idPedidoAlteracaoAtual, 2);
+
+            msg.Show();
+            this.Hide();
+
+
+            //criar.DeletarPedidoAlteracao(idPedidoAlteracaoAtual);
+            //MessageBox.Show("SOLICITAÇÃO DE ALTERAÇÃO NEGADA COM SUCESSO!", "TOPMOVIE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //listarPedidos();
         }
 
         private void frmConsultarSolicitacoes_FormClosing(object sender, FormClosingEventArgs e)

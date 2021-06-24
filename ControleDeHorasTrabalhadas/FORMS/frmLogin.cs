@@ -32,7 +32,7 @@ namespace ControleDeHorasTrabalhadas
                 tela.permAcc(acc.Permin(perm));
                 tela.permGuardID = acc.Permin(perm);
                 tela.popularCbx(perm);
-                MessageBox.Show("FUNCIONÁRIO LOGADO COM SUCESSO", "TOPMOVIE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("COLABORADOR LOGADO COM SUCESSO", "ACESSO PERMITIDO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 tela.Show();
 
 
@@ -43,7 +43,7 @@ namespace ControleDeHorasTrabalhadas
             }
             else
             {
-                MessageBox.Show("FUNCIONÁRIO DEMITIDO OU DADOS INCORRETOS!", "TOPMOVIE - ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("COLABORADOR DEMITIDO OU DADOS INCORRETOS!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
